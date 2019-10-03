@@ -59,7 +59,33 @@ print ("S para cadastro simples e C para cadastro completo")
 
 x = input()
 
-if x == 'S':
+if x.upper() == 'S':
+    pessoa = Simples()
+    print ("Digite seu nome")
+    pessoa.nome = input()
+    print ("")
+    print ("Digite seu CPF")
+    pessoa.cpf = input()
+    print ("")
+    print ("Digite sua contribuicao")
+    print ("")
+    pessoa.contribuicao = input()
+    print ("")
+    print ("Digite sua renda")
+    print ("")
+    pessoa.renda = input()
+    
+    print (pessoa.nome)
+    print (pessoa.cpf)
+    print (pessoa.contribuicao)
+    print (pessoa.renda)
+        
+   
+    
+##elif x.upper() == 'C':
+
+
+#else:
     
 
 
