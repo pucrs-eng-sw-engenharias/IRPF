@@ -55,48 +55,82 @@ class Completo (Simples):
     def getDependentes (self):
         return self.dependentes
 
+
+ListaSimples = []
+ListaCompleta = []
+
 print ("S para cadastro simples e C para cadastro completo")
 
 x = input()
 
 if x.upper() == 'S':
+    
     pessoa = Simples()
-    print ("Digite seu nome")
-    pessoa.nome = input()
+    pessoa.nome = input("Digite seu nome: ")
     print ("")
-    print ("Digite seu CPF")
-    pessoa.cpf = input()
+    pessoa.cpf = input("Digite seu CPF: ")
     print ("")
-    print ("Digite sua contribuicao")
+    pessoa.contribuicao = input("Digite sua contribuicao: ")
     print ("")
-    pessoa.contribuicao = input()
+    pessoa.renda = input("Digite sua renda: ")
     print ("")
-    print ("Digite sua renda")
-    print ("")
-    pessoa.renda = input()
     
-    print (pessoa.nome)
-    print (pessoa.cpf)
-    print (pessoa.contribuicao)
-    print (pessoa.renda)
+    ListaSimples.append(pessoa)
+    
+    BaseCalculo = (pessoa.renda - pessoa.contribuicao) - ((pessoa.renda - pessoa.contribuicao)*0.05)
+    
+    if BaseCalculo <= 12000 :
+        print ('Isento de imposto de renda')
+    
+    elif BaseCalculo > 12000 and BaseCalculo < 24000 :
+        Imposto = (BaseCalculo - 12000)*0.15
+        print ('Cálculo Imposto de Renda: ',Imposto)
         
+    elif BaseCalculo >= 24000 :
+        Imposto = 1800 + (BaseCalculo - 24000) * 0.275
+        print ('Cálculo Imposto de Renda: ',Imposto)
+
+if x.upper() == 'C':
+    
+    pessoa = Completo()
+    pessoa.nome = input("Digite seu nome: ")
+    print ("")
+    pessoa.cpf = input("Digite seu CPF: ")
+    print ("")
+    pessoa.contribuicao = input("Digite sua contribuicao: ")
+    print ("")
+    pessoa.renda = input("Digite sua renda: ")
+    print ("")
+    pessoa.idade = input("Digite sua idade: ")
+    print ("")
+    pessoa.dependentes = input("Digite numero de dependentes: ")
+    print ("")
+    
+    ListaCompleta.append(pessoa)
+    
+    BaseCalculo = 
+    
+    if BaseCalculo <= 12000 :
+        print ('Isento de imposto de renda')
+    
+    elif BaseCalculo > 12000 and BaseCalculo < 24000 :
+        Imposto = (BaseCalculo - 12000)*0.15
+        print ('Cálculo Imposto de Renda: ',Imposto)
+        
+    elif BaseCalculo >= 24000 :
+        Imposto = 1800 + (BaseCalculo - 24000) * 0.275
+        print ('Cálculo Imposto de Renda: ',Imposto)
+        
+        
+# if é o mesmo para declaração completa
+#adicionar ListaSimples[] e ListaComlpleta a uma ListaComum[]
    
-    
-##elif x.upper() == 'C':
-
-
-#else:
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
