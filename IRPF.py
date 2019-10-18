@@ -56,87 +56,133 @@ class Completo (Simples):
         return self.dependentes
 
 
-ListaSimples = []
-ListaCompleta = []
+Catalogo = []
 
-print ("S para cadastro simples e C para cadastro completo")
+continuar = 1
+while continuar != 0:
+    
+    print ("S para cadastro simples e C para cadastro completo")
 
-x = input()
-
-if x.upper() == 'S':
+    x = input()
     
-    pessoa = Simples()
-    pessoa.nome = input("Digite seu nome: ")
-    print ("")
-    pessoa.cpf = int(input("Digite seu CPF: "))
-    print ("")
-    pessoa.contribuicao = float(input("Digite sua contribuicao: "))
-    print ("")
-    pessoa.renda = float(input("Digite sua renda: "))
-    print ("")
-    
-    ListaSimples.append(pessoa)
-    
-    BaseCalculo = (pessoa.renda - pessoa.contribuicao) - ((pessoa.renda - pessoa.contribuicao)*0.05)
-    
-    if BaseCalculo <= 12000 :
-        print ('Isento de imposto de renda')
-    
-    elif BaseCalculo > 12000 :
-        Imposto = (BaseCalculo - 12000)*0.15
+    if x.upper() == 'S':
         
-        if BaseCalculo >= 24000 :
-            Imposto = Imposto + (BaseCalculo - 24000) * 0.275
+        pessoa = Simples()
+        pessoa.nome = input("Digite seu nome: ")
+        print ("")
+        while 1:
+                pessoa.cpf = (input("Digite seu CPF: "))
+                if pessoa.cpf.isdigit() and len(pessoa.cpf) == 11 : 
+                    break
+                print ("CPF inválido!")
+        print ("")
         
-        print ('Cálculo Imposto de Renda: R$',Imposto)
-
-if x.upper() == 'C':
-    
-    pessoa = Completo()
-    pessoa.nome = input("Digite seu nome: ")
-    print ("")
-    pessoa.cpf = int(input("Digite seu CPF: "))
-    print ("")
-    pessoa.contribuicao = float(input("Digite sua contribuicao: "))
-    print ("")
-    pessoa.renda = float(input("Digite sua renda: "))
-    print ("")
-    pessoa.idade = int(input("Digite sua idade: "))
-    print ("")
-    pessoa.dependentes = int(input("Digite numero de dependentes: "))
-    print ("")
-    
-    ListaCompleta.append(pessoa)
-    
-    BaseCalculo = (pessoa.renda - pessoa.contribuicao)
-
-    if pessoa.idade < 65 :
-        if pessoa.dependentes <= 2 :
-            BaseCalculo = BaseCalculo - (BaseCalculo * 0.02)
-        elif pessoa.dependentes >= 3 and pessoa.dependentes <=5 :
-            BaseCalculo = BaseCalculo - (BaseCalculo * 0.035)
-        elif pessoa.dependentes > 5 :
-            BaseCalculo = BaseCalculo - (BaseCalculo * 0.05)
-    elif pessoa.idade >= 65 :
-        if pessoa.dependentes <=2 :
-            BaseCalculo = BaseCalculo - (BaseCalculo * 0.03)
-        elif pessoa.dependentes >= 3 and pessoa.dependentes <=5 :
-            BaseCalculo = BaseCalculo - (BaseCalculo * 0.045)
-        elif pessoa.dependentes > 5 :
-            BaseCalculo = BaseCalculo - (BaseCalculo * 0.06)
-    
-    if BaseCalculo <= 12000 :
-        print ('Isento de imposto de renda')
-    
-    elif BaseCalculo > 12000 :
-        Imposto = (BaseCalculo - 12000)*0.15
+        while 1:
+            try:
+                pessoa.contribuicao = float(input("Digite sua contribuicao: "))
+                break
+            except ValueError:
+                print ("Contribuicao invalida!")
+        print ("")
         
-        if BaseCalculo >= 24000 :
-            Imposto = Imposto + (BaseCalculo - 24000) * 0.275
+        while 1:
+            try:
+                pessoa.renda = float(input("Digite sua renda: "))
+                break
+            except ValueError:
+                print ("Renda invalida!")
+        print ("")
+    
+        Catalogo.append(pessoa)
+    
+        BaseCalculo = (pessoa.renda - pessoa.contribuicao) - ((pessoa.renda - pessoa.contribuicao)*0.05)
+    
+        if BaseCalculo <= 12000 :
+            print ('Isento de imposto de renda')
+    
+        elif BaseCalculo > 12000 :
+            Imposto = (BaseCalculo - 12000)*0.15
+            if BaseCalculo >= 24000 :
+                Imposto = Imposto + (BaseCalculo - 24000) * 0.275
         
-        print ('Cálculo Imposto de Renda: R$',Imposto)
+            print ('Cálculo Imposto de Renda: R$',round(Imposto,2))
 
+    if x.upper() == 'C':
+    
+        pessoa = Completo()
+        pessoa.nome = input("Digite seu nome: ")
+        print ("")
+        while 1:
+                pessoa.cpf = (input("Digite seu CPF: "))
+                if pessoa.cpf.isdigit() and len(pessoa.cpf) == 11 : 
+                    break
+                print ("CPF inválido!")
+        print ("")
+        
+        while 1:
+            try:
+                pessoa.contribuicao = float(input("Digite sua contribuicao: "))
+                break
+            except ValueError:
+                print ("Contribuicao invalida!")
+        print ("")
+        
+        while 1:
+            try:
+                pessoa.renda = float(input("Digite sua renda: "))
+                break
+            except ValueError:
+                print ("Renda invalida!")
+        
+        print ("")
+        while 1:
+            try:
+                pessoa.idade = int(input("Digite sua idade: "))
+                break
+            except ValueError:
+                print ("Idade inválida!")
 
-# adicionar ListaSimples[] e ListaComlpleta a uma ListaComum[]
-# fazer loop de cadastramento
-# arredondar ou cortar resultado final do imposto de renda
+        print ("")
+        
+        while 1:
+            try:
+                pessoa.dependentes = int(input("Digite numero de dependentes: "))
+                break
+            except ValueError:
+                print ("Numero de dependentes inválido!")
+
+        print ("")
+    
+        Catalogo.append(pessoa)
+    
+        BaseCalculo = (pessoa.renda - pessoa.contribuicao)
+
+        if pessoa.idade < 65 :
+            if pessoa.dependentes <= 2 :
+                BaseCalculo = BaseCalculo - (BaseCalculo * 0.02)
+            elif pessoa.dependentes >= 3 and pessoa.dependentes <=5 :
+                BaseCalculo = BaseCalculo - (BaseCalculo * 0.035)
+            elif pessoa.dependentes > 5 :
+                BaseCalculo = BaseCalculo - (BaseCalculo * 0.05)
+        elif pessoa.idade >= 65 :
+            if pessoa.dependentes <=2 :
+                BaseCalculo = BaseCalculo - (BaseCalculo * 0.03)
+            elif pessoa.dependentes >= 3 and pessoa.dependentes <=5 :
+                BaseCalculo = BaseCalculo - (BaseCalculo * 0.045)
+            elif pessoa.dependentes > 5 :
+                BaseCalculo = BaseCalculo - (BaseCalculo * 0.06)
+    
+        if BaseCalculo <= 12000 :
+            print ('Isento de imposto de renda')
+    
+        elif BaseCalculo > 12000 :
+            Imposto = (BaseCalculo - 12000)*0.15
+            if BaseCalculo >= 24000 :
+                Imposto = Imposto + (BaseCalculo - 24000) * 0.275
+            
+            print ('Cálculo Imposto de Renda: R$',"%.2f" % Imposto)
+    
+    print ("Continuar?")
+    print ("  0 --> ENCERRAR")
+    print ("  1 --> CONTINUAR CADASTRAMENTO")
+    continuar = int(input ())
